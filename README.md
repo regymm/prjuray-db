@@ -31,6 +31,19 @@ is kept in sync with the version in
 [Project U-Ray](https://github.com/SymbiFlow/prjuray), please contribute all changes to
 that file and then request Tim to rebuild the HTML output.
 
+# Canonical database ordering
+
+Run `make sort-db` after importing generated `.db` files.  It sorts database
+lines in the natural order already used by the Project U-Ray tooling (for
+example, `[2]` before `[10]`) and sorts the bit tokens in each line by numeric
+frame and bit address.  Bit polarity does not affect address order, so `17_47`
+is placed before `!19_47`.  Origin metadata remains immediately after the
+feature name.  Strict bytewise line ordering is also available with
+`./sort_db.py --line-order ascii` when needed.
+
+CI or review scripts can use `make check-db-sort` to check the ordering without
+modifying files.
+
 # License
 
 These files are released under the very permissive [CC0 1.0 Universal](COPYING).

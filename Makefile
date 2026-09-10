@@ -31,3 +31,11 @@ update:
 	git stash pop
 
 .PHONY: update
+
+sort-db:
+	python3 sort_db.py $(wildcard $(DATABASE_PARTS))
+
+check-db-sort:
+	python3 sort_db.py --check $(wildcard $(DATABASE_PARTS))
+
+.PHONY: sort-db check-db-sort
